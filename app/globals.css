@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --primary-color: #38bdf8;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Pixel-font base */
+* {
+  font-family: "Press Start 2P", cursive;
+  box-sizing: border-box;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* Sections clear sticky header */
+section {
+  scroll-margin-top: 95px;
+}
+
+/* Theme-color utility — used via style prop where Tailwind can't reach CSS vars */
+.border-primary { border-color: var(--primary-color); }
+.text-primary   { color: var(--primary-color); }
+.bg-primary     { background-color: var(--primary-color); }
+.shadow-primary { box-shadow: 0 10px 0 var(--primary-color); }
+
+/* Mobile nav slide-in */
+@media (max-width: 767px) {
+  #navMenu {
+    display: none;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 0;
+    right: -100%;
+    flex-direction: column;
+    gap: 2rem;
+    z-index: 999;
+    width: 80vw;
+    height: 80vh;
+    padding: 1.5rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: right 0.4s ease;
+    font-size: 16px;
+  }
+}
+
+/* Glitch animation for h1 */
+@keyframes glitch {
+  0%   { text-shadow: 2px 2px var(--primary-color); }
+  50%  { text-shadow: -2px -2px var(--primary-color); }
+  100% { text-shadow: 2px 2px var(--primary-color); }
+}
+.animate-glitch { animation: glitch 1.5s infinite; }
+
+/* Pop-in for game cards */
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+.animate-popIn { animation: popIn 0.8s ease; }
+
+/* Fade-in for sections */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fadeIn { animation: fadeIn 1.2s ease; }
